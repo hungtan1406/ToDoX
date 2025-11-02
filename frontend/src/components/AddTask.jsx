@@ -48,7 +48,7 @@ function AddTask({ handleNewTaskAdded }) {
           size='xl'
           className='px-6'
           onClick={addTask}
-          // disabled={!newTaskTitle.trim()}
+          disabled={!newTaskTitle.trim()}
         >
           <Plus className='size-5' />
           Add Task

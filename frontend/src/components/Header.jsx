@@ -11,7 +11,7 @@ const Header = () => {
         ToDoX
       </h1>
       <Button
-        variant='outline'
+        variant='gradient'
         className='text-sm font-medium hover:bg-indigo-50'
         onClick={signOut}
       >
