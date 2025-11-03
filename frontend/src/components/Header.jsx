@@ -12,10 +12,10 @@ const Header = () => {
       </h1>
       <Button
         variant='gradient'
-        className='text-sm font-medium hover:bg-indigo-50'
+        className='text-sm font-medium hover:bg-destructive'
         onClick={signOut}
       >
-        Logout
+        Đăng xuất
       </Button>
     </header>
   );

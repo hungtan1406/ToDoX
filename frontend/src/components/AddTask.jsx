@@ -51,7 +51,7 @@ function AddTask({ handleNewTaskAdded }) {
           disabled={!newTaskTitle.trim()}
         >
           <Plus className='size-5' />
-          Add Task
+          Thêm
         </Button>
       </div>
     </Card>
