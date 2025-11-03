@@ -70,11 +70,21 @@ export const signIn = async (req, res) => {
       expiresAt: new Date(Date.now() + REFRESH_TOKEN_TTL),
     });
 
+    // res.cookie('refreshToken', refreshToken, {
+    //   httpOnly: true,
+    //   secure: true,
+    //   sameSite: 'none',
+    //   maxAge: REFRESH_TOKEN_TTL,
+    // });
+
+    const isProd = process.env.NODE_ENV === 'production';
+
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      secure: true,
-      sameSite: 'none',
+      secure: isProd,
+      sameSite: isProd ? 'none' : 'lax',
       maxAge: REFRESH_TOKEN_TTL,
+      path: '/',
     });
 
     return res.status(200).json({
