@@ -5,6 +5,11 @@ It features **JWT authentication with secure HTTP-only refresh tokens**, allowin
 
 ---
 
+<img width="2517" height="1200" alt="image" src="https://github.com/user-attachments/assets/b626ecae-6add-4307-abea-823c129e5fcd" />
+<img width="1894" height="857" alt="image" src="https://github.com/user-attachments/assets/7c311f0b-a7f1-4248-94d1-a59dd8d32899" />
+
+
+
 ## 🚀 Features
 
 - 🔐 **User Authentication** — JWT with refresh tokens stored securely in HTTP-only cookies  
@@ -22,29 +27,29 @@ ToDoX/
 ├── backend/
 │ ├── src/
 │ │ ├── config/
-│ │ │ └── db.js # MongoDB connection
+│ │ │ └── db.js 
 │ │ ├── controller/
-│ │ │ ├── authController.js # Register / Login / Refresh token logic
-│ │ │ └── tasksController.js # CRUD for tasks
+│ │ │ ├── authController.js 
+│ │ │ └── tasksController.js 
 │ │ ├── middlewares/
-│ │ │ └── authMiddleware.js # JWT authentication middleware
+│ │ │ └── authMiddleware.js 
 │ │ ├── routes/
-│ │ │ ├── authRoute.js # Auth routes
-│ │ │ └── tasksRouter.js # Task routes
-│ │ └── server.js # Express server entry point
-│ ├── .env # Environment variables
+│ │ │ ├── authRoute.js 
+│ │ │ └── tasksRouter.js 
+│ │ └── server.js 
+│ ├── .env 
 │ └── package.json
 │
 └── frontend/
 ├── src/
-│ ├── assets/ # Images, icons
-│ ├── components/ # Reusable UI components
-│ ├── pages/ # Page-level components
-│ ├── services/ # API services (Axios)
-│ ├── stores/ # Zustand store
-│ ├── App.jsx # App root
-│ ├── main.jsx # Entry point
-│ └── index.css # Global styles
+│ ├── assets/ 
+│ ├── components/ 
+│ ├── pages/ 
+│ ├── services/ 
+│ ├── stores/ 
+│ ├── App.jsx 
+│ ├── main.jsx 
+│ └── index.css 
 ├── public/
 ├── vite.config.js
 └── package.json
