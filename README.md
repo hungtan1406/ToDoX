@@ -5,11 +5,6 @@ It features **JWT authentication with secure HTTP-only refresh tokens**, allowin
 
 ---
 
-<img width="2517" height="1200" alt="image" src="https://github.com/user-attachments/assets/b626ecae-6add-4307-abea-823c129e5fcd" />
-<img width="1894" height="857" alt="image" src="https://github.com/user-attachments/assets/7c311f0b-a7f1-4248-94d1-a59dd8d32899" />
-
-
-
 ## 🚀 Features
 
 - 🔐 **User Authentication** — JWT with refresh tokens stored securely in HTTP-only cookies  
@@ -163,6 +158,11 @@ When a user logs in, the server returns:
 - Integrated RESTful APIs between frontend and backend using Axios
 
 ---
+### 🌐 demo 
+- https://todox-2njg.onrender.com
+
+<img width="2517" height="1200" alt="image" src="https://github.com/user-attachments/assets/b626ecae-6add-4307-abea-823c129e5fcd" />
+<img width="1894" height="857" alt="image" src="https://github.com/user-attachments/assets/7c311f0b-a7f1-4248-94d1-a59dd8d32899" />
 
 ### 💬 Contact
 - 📧 Email: hungtanth1406@gmail.com
