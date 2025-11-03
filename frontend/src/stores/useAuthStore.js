@@ -71,20 +71,63 @@ export const useAuthStore = create((set, get) => ({
     }
   },
 
+  // refresh: async () => {
+  //   try {
+  //     set({ loading: true });
+  //     const { tasks, fetchTask, setAccessToken } = get();
+  //     const accessToken = await authService.refresh();
+
+  //     setAccessToken(accessToken);
+  //     if (!tasks || tasks.length === 0) {
+  //       await fetchTask();
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     toast.error('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại!');
+  //     get().clearState();
+  //   } finally {
+  //     set({ loading: false });
+  //   }
+  // },
+
   refresh: async () => {
     try {
       set({ loading: true });
-      const { tasks, fetchTask, setAccessToken } = get();
-      const accessToken = await authService.refresh();
 
+      const { tasks, fetchTask, setAccessToken } = get();
+
+      // service giờ trả { accessToken }
+      const data = await authService.refresh();
+      const accessToken = data?.accessToken ?? null;
+
+      // reload lần đầu mà chưa đăng nhập -> sẽ vào đây -> trả null, KHÔNG báo lỗi
+      if (!accessToken) {
+        return null;
+      }
+
+      // có token -> set
       setAccessToken(accessToken);
-      if (!tasks || tasks.length === 0) {
+
+      // nếu chưa có task -> lấy
+      if ((!tasks || tasks.length === 0) && typeof fetchTask === 'function') {
         await fetchTask();
       }
+
+      return accessToken;
     } catch (error) {
       console.error(error);
+      const status = error?.response?.status;
+      const msg = error?.response?.data?.message;
+
+      // ❗Trường hợp phổ biến nhất khi reload mà chưa login: 401 + "Token không tồn tại."
+      // => đừng báo lỗi, cứ để user vào trang login
+      if (status === 401 && msg === 'Token không tồn tại.') {
+        return null;
+      }
+
       toast.error('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại!');
       get().clearState();
+      return null;
     } finally {
       set({ loading: false });
     }
