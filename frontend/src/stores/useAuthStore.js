@@ -71,56 +71,20 @@ export const useAuthStore = create((set, get) => ({
     }
   },
 
-  // refresh: async () => {
-  //   try {
-  //     set({ loading: true });
-  //     const { tasks, fetchTask, setAccessToken } = get();
-  //     const accessToken = await authService.refresh();
-
-  //     setAccessToken(accessToken);
-  //     if (!tasks || tasks.length === 0) {
-  //       await fetchTask();
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     toast.error('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại!');
-  //     get().clearState();
-  //   } finally {
-  //     set({ loading: false });
-  //   }
-  // },
-
   refresh: async () => {
-    const { fetchTask, setAccessToken, clearState } = get();
     try {
       set({ loading: true });
+      const { tasks, fetchTask, setAccessToken } = get();
+      const accessToken = await authService.refresh();
 
-      const res = await authService.refresh();
-      const newAccessToken = res?.data?.accessToken ?? res?.accessToken ?? null;
-
-      if (newAccessToken) {
-        setAccessToken(newAccessToken);
-
-        if (typeof fetchTask === 'function') {
-          await fetchTask();
-        }
-
-        return newAccessToken;
+      setAccessToken(accessToken);
+      if (!tasks || tasks.length === 0) {
+        await fetchTask();
       }
-
-      return null;
     } catch (error) {
-      const status = error?.response?.status;
-      const msg = error?.response?.data?.message;
-
-      if (status === 401 && msg === 'Token không tồn tại.') {
-        return null;
-      }
-
       console.error(error);
       toast.error('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại!');
-      clearState();
-      return null;
+      get().clearState();
     } finally {
       set({ loading: false });
     }
