@@ -78,7 +78,7 @@ const TaskCard = ({ task, index, handleTaskChanged }) => {
   return (
     <Card
       className={cn(
-        'flex justify-between flex-row p-4 bg-gradient-card border-0 shadow-custom-md hover:shadow-custom-lg transition-all duration-200 animate-fade-in group',
+        'p-4 bg-gradient-card border-0 shadow-custom-md hover:shadow-custom-lg transition-all duration-200 animate-fade-in group',
         task.status === 'completed' && 'opacity-75'
       )}
       style={{ animationDelay: `${index * 50}ms` }}
@@ -102,7 +102,7 @@ const TaskCard = ({ task, index, handleTaskChanged }) => {
           )}
         </Button>
 
-        <div className='flex flex-col min-w-0'>
+        <div className='flex-1 min-w-0'>
           {isEditing ? (
             <Input
               type='text'
@@ -144,28 +144,28 @@ const TaskCard = ({ task, index, handleTaskChanged }) => {
             )}
           </div>
         </div>
-      </div>
 
-      <div className='hidden gap-2 group-hover:inline-flex animate-slide-up'>
-        <Button
-          variant='ghost'
-          size='icon'
-          className='shrink-0 transition-color size-8 text-muted-foreground hover:text-info'
-          onClick={() => {
-            setIsEditing(true);
-            setUpdateTitle(task.title || '');
-          }}
-        >
-          <SquarePen className='size-4' />
-        </Button>
-        <Button
-          variant='ghost'
-          size='icon'
-          className='shrink-0 transition-color size-8 text-muted-foreground hover:text-destructive'
-          onClick={() => deleteTask(task._id)}
-        >
-          <Trash className='size-4' />
-        </Button>
+        <div className='hidden gap-2 group-hover:inline-flex animate-slide-up'>
+          <Button
+            variant='ghost'
+            size='icon'
+            className='shrink-0 transition-color size-8 text-muted-foreground hover:text-info'
+            onClick={() => {
+              setIsEditing(true);
+              setUpdateTitle(task.title || '');
+            }}
+          >
+            <SquarePen className='size-4' />
+          </Button>
+          <Button
+            variant='ghost'
+            size='icon'
+            className='shrink-0 transition-color size-8 text-muted-foreground hover:text-destructive'
+            onClick={() => deleteTask(task._id)}
+          >
+            <Trash className='size-4' />
+          </Button>
+        </div>
       </div>
     </Card>
   );
